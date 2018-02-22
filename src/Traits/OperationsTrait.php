@@ -32,6 +32,7 @@ trait OperationsTrait
         foreach ($this as $value) {
             $result++;
         }
+
         return $result;
     }
 
@@ -61,4 +62,9 @@ trait OperationsTrait
 
         return $this;
     }
+
+    /**
+     * @return void
+     */
+    abstract public function rewind();
 }
