@@ -50,4 +50,15 @@ trait OperationsTrait
     {
         return !$this->isEmpty();
     }
+
+    /**
+     * @return $this
+     */
+    public function clear()
+    {
+        $this->rewind();
+        $this->items = [];
+
+        return $this;
+    }
 }
