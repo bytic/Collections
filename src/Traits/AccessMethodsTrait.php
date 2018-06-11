@@ -9,7 +9,6 @@ namespace Nip\Collections\Traits;
 trait AccessMethodsTrait
 {
 
-
     /**
      * @param array $items
      */
@@ -26,6 +25,7 @@ trait AccessMethodsTrait
     {
         if ($key == null) {
             $this->items[] = $element;
+
             return;
         }
         $this->set($key, $element);
@@ -116,6 +116,37 @@ trait AccessMethodsTrait
         }
         $removed = $this->items[$key];
         unset($this->items[$key]);
+
         return $removed;
+    }
+
+    /**
+     * Alias of unshift
+     *
+     * @param  mixed $value
+     * @param  mixed $key
+     * @return $this
+     */
+    public function prepend($value, $key = null)
+    {
+        return $this->unshift($value, $key);
+    }
+
+    /**
+     * Push an item onto the beginning of the collection.
+     *
+     * @param $value
+     * @param null $key
+     * @return $this
+     */
+    public function unshift($value, $key = null)
+    {
+        if (is_null($key)) {
+            array_unshift($this->items, $value);
+        } else {
+            $this->items = [$key => $value] + $this->items;
+        }
+
+        return $this;
     }
 }
