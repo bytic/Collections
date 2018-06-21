@@ -2,8 +2,6 @@
 
 namespace Nip\Collections\Traits;
 
-use Traversable;
-
 /**
  * Class OperationsTrait
  * @package Nip\Collections\Traits
@@ -61,6 +59,22 @@ trait OperationsTrait
         $this->items = [];
 
         return $this;
+    }
+
+    /**
+     * Key an associative array by a field or using a callback.
+     *
+     * @param  callable|string $keyBy
+     * @return static
+     */
+    public function keyBy($keyBy)
+    {
+        $results = [];
+        foreach ($this->items as $key => $item) {
+            $resolvedKey = is_object($item) ? $item->{$keyBy}  : $item[$keyBy];
+            $results[$resolvedKey] = $item;
+        }
+        return new static($results);
     }
 
     /**

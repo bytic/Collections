@@ -34,4 +34,20 @@ class OperationsTraitTest extends AbstractTest
         $this->collection->clear();
         static::assertEquals(0, $this->collection->count());
     }
+
+    public function testKeyByForArrayCollection()
+    {
+        $collection = new Collection();
+
+        $collection['first'] = ['name' => 'John'];
+        $collection['second'] = ['name' => 'Mike'];
+
+        static::assertEquals(2, $collection->count());
+        static::assertEquals(['first', 'second'], $collection->keys());
+
+        $newCollection = $collection->keyBy('name');
+
+        static::assertEquals(['first', 'second'], $collection->keys());
+        static::assertEquals(['John', 'Mike'], $newCollection->keys());
+    }
 }
