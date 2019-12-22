@@ -9,6 +9,7 @@ use IteratorAggregate;
 use JsonSerializable;
 use Nip\Collections\Traits\AccessMethodsTrait;
 use Nip\Collections\Traits\ArrayAccessTrait;
+use Nip\Collections\Traits\OperationsOnItemsTrait;
 use Nip\Collections\Traits\OperationsTrait;
 use Nip\Collections\Traits\SortingTrait;
 use Nip\Collections\Traits\TransformMethodsTrait;
@@ -22,6 +23,7 @@ class AbstractCollection implements ArrayAccess, Countable, IteratorAggregate, J
     use ArrayAccessTrait;
     use AccessMethodsTrait;
     use OperationsTrait;
+    use OperationsOnItemsTrait;
     use SortingTrait;
     use TransformMethodsTrait;
 
