@@ -25,15 +25,15 @@ class OperationsOnItemsTraitTest extends AbstractTest
         self::assertSame(5, $collection->get('foe'));
     }
 
-    public function test_valueSubstrat_numeric()
+    public function test_valueSubtract_numeric()
     {
         $collection = new Collection();
 
-        $collection->valueSubstract('foe', 1);
+        $collection->valueSubtract('foe', 1);
         self::assertSame(-1, $collection->get('foe'));
 
         $collection->set('foe', 5);
-        $collection->valueSubstract('foe', 2);
+        $collection->valueSubtract('foe', 2);
         self::assertSame(3, $collection->get('foe'));
     }
 }

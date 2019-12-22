@@ -25,7 +25,9 @@ trait OperationsOnItemsTrait
             return;
         }
 
-        $currentValue = $this->get($key);
+        $currentValue = $this->get($key, 0 );
+        $currentValue = $currentValue === null ? 0 : $currentValue;
+
         if (!is_numeric($currentValue)) {
             throw new Exception("Current value for key {$key} is not numeric. [{$value}] provided. ");
         }
@@ -39,7 +41,7 @@ trait OperationsOnItemsTrait
      *
      * @throws Exception
      */
-    public function valueSubstract($key, $value)
+    public function valueSubtract($key, $value)
     {
         $currentValue = $this->get($key, 0);
 
