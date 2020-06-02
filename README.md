@@ -11,3 +11,8 @@ ByTIC collections component
 [![Quality Score](https://img.shields.io/scrutinizer/g/bytic/collections.svg?style=flat-square)](https://scrutinizer-ci.com/g/bytic/collections)
 [![StyleCI](https://styleci.io/repos/118474281/shield?branch=master)](https://styleci.io/repos/118474281)
 [![Total Downloads](https://img.shields.io/packagist/dt/bytic/collections.svg?style=flat-square)](https://packagist.org/packages/bytic/collections)
+
+
+#### Inspiration
+https://github.com/illuminate/collections/blob/master/Collection.php
+https://github.com/Stillat/Collection

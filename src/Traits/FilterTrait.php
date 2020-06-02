@@ -16,12 +16,29 @@ trait FilterTrait
      * @param  mixed  $keys
      * @return static
      */
-        public function only($keys)
+    public function only($keys)
     {
         if (is_null($keys)) {
             return new static($this->items);
         }
         $keys = is_array($keys) ? $keys : func_get_args();
         return new static(Arr::only($this->items, $keys));
+    }
+
+    /**
+     * Splice a portion of the underlying collection array.
+     *
+     * @param int $offset
+     * @param int|null $length
+     * @param mixed $replacement
+     * @return static
+     */
+    public function splice($offset, $length = null, $replacement = [])
+    {
+        if (func_num_args() === 1) {
+            return new static(array_splice($this->items, $offset));
+        }
+
+        return new static(array_splice($this->items, $offset, $length, $replacement));
     }
 }

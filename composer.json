@@ -22,7 +22,7 @@
   },
   "autoload-dev": {
     "psr-4": {
-      "Nip\\Collections\\Tests\\": "tests/"
+      "Nip\\Collections\\Tests\\": "tests/src"
     }
   },
   "require": {
