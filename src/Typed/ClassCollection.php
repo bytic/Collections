@@ -33,5 +33,4 @@ class ClassCollection extends AbstractTypedCollection
     {
         $this->validClass = $validClass;
     }
-
 }

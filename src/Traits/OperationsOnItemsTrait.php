@@ -25,7 +25,7 @@ trait OperationsOnItemsTrait
             return;
         }
 
-        $currentValue = $this->get($key, 0 );
+        $currentValue = $this->get($key, 0);
         $currentValue = $currentValue === null ? 0 : $currentValue;
 
         if (!is_numeric($currentValue)) {

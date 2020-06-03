@@ -8,5 +8,4 @@ namespace Nip\Collections\Tests\Fixtures;
  */
 class BaseObject
 {
-
 }

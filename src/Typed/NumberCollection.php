@@ -8,8 +8,8 @@ namespace Nip\Collections\Typed;
  */
 class NumberCollection extends AbstractTypedCollection
 {
-    CONST TYPE = 'number';
-    CONST CHECKER = 'is_numeric';
+    const TYPE = 'number';
+    const CHECKER = 'is_numeric';
 
     protected $type = self::TYPE;
     protected $typeChecker = self::CHECKER;
