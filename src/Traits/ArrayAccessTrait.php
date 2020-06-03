@@ -17,7 +17,7 @@ trait ArrayAccessTrait
      */
     public function offsetExists($key)
     {
-        return $this->has($key);
+        return isset($this->items[$key]) || array_key_exists($key, $this->items);
     }
 
     /**
@@ -28,21 +28,21 @@ trait ArrayAccessTrait
      */
     public function offsetGet($key)
     {
-        return $this->get($key);
+        return $this->items[$key];
     }
 
     /**
-     * @param  string $offset
+     * @param  string $key
      * @param  mixed $value
      * @return void
      */
-    public function offsetSet($offset, $value)
+    public function offsetSet($key, $value)
     {
-        if (!isset($offset)) {
-            $this->add($value);
-            return;
+        if (is_null($key)) {
+            $this->items[] = $value;
+        } else {
+            $this->items[$key] = $value;
         }
-        $this->set($offset, $value);
     }
 
     /**
@@ -52,6 +52,6 @@ trait ArrayAccessTrait
      */
     public function offsetUnset($key)
     {
-        $this->unset($key);
+        unset($this->items[$key]);
     }
 }

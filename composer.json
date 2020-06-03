@@ -18,10 +18,12 @@
       "legacy"
     ],
     "files": [
+      "src/functions/general.php"
     ]
   },
   "autoload-dev": {
     "psr-4": {
+      "Nip\\Collections\\Tests\\Fixtures\\": "tests/fixtures",
       "Nip\\Collections\\Tests\\": "tests/src"
     }
   },

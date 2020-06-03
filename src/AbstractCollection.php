@@ -7,13 +7,7 @@ use ArrayIterator;
 use Countable;
 use IteratorAggregate;
 use JsonSerializable;
-use Nip\Collections\Traits\AccessMethodsTrait;
-use Nip\Collections\Traits\ArrayAccessTrait;
-use Nip\Collections\Traits\FilterTrait;
-use Nip\Collections\Traits\OperationsOnItemsTrait;
-use Nip\Collections\Traits\OperationsTrait;
-use Nip\Collections\Traits\SortingTrait;
-use Nip\Collections\Traits\TransformMethodsTrait;
+use Nip\Collections\Legacy\Traits\DeprecatedTraits;
 
 /**
  * Class Registry
@@ -21,13 +15,14 @@ use Nip\Collections\Traits\TransformMethodsTrait;
  */
 class AbstractCollection implements ArrayAccess, Countable, IteratorAggregate, JsonSerializable
 {
-    use AccessMethodsTrait;
-    use ArrayAccessTrait;
-    use FilterTrait;
-    use OperationsOnItemsTrait;
-    use OperationsTrait;
-    use SortingTrait;
-    use TransformMethodsTrait;
+    use Traits\AccessMethodsTrait;
+    use Traits\ArrayAccessTrait;
+    use Traits\FilterTrait;
+    use Traits\OperationsOnItemsTrait;
+    use Traits\OperationsTrait;
+    use Traits\SortingTrait;
+    use Traits\TransformMethodsTrait;
+    use DeprecatedTraits;
 
     /**
      * @var array

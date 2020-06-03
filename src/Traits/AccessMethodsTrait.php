@@ -19,27 +19,20 @@ trait AccessMethodsTrait
 
     /**
      * {@inheritDoc}
-     * @param \Nip\Records\AbstractModels\Record $element
      */
     public function add($element, $key = null)
     {
-        if ($key == null) {
-            $this->items[] = $element;
-
-            return;
-        }
         $this->set($key, $element);
     }
 
     /**
-     * @param string $id
+     * @param $key
      * @param mixed $value
      */
-    public function set($id, $value)
+    public function set($key, $value)
     {
-        $this->items[$id] = $value;
+        $this->offsetSet($key, $value);
     }
-
 
     /**
      * Returns a parameter by name.
@@ -51,7 +44,11 @@ trait AccessMethodsTrait
      */
     public function get($key, $default = null)
     {
-        return array_key_exists($key, $this->items) ? $this->items[$key] : $default;
+        if ($this->offsetExists($key)) {
+            return $this->offsetGet($key);
+        }
+
+        return value($default);
     }
 
     /**
@@ -60,19 +57,16 @@ trait AccessMethodsTrait
      */
     public function has($key)
     {
-        return isset($this->items[$key]) || array_key_exists($key, $this->items);
-    }
+        $keys = is_array($key) ? $key : func_get_args();
 
-    /**
-     * @param $key
-     * @return bool
-     * @deprecated Use ->has($key) instead
-     */
-    public function exists($key)
-    {
-        return $this->has($key);
-    }
+        foreach ($keys as $value) {
+            if (!$this->offsetExists($value)) {
+                return false;
+            }
+        }
 
+        return true;
+    }
 
     /**
      * Returns the parameters.
@@ -104,6 +98,20 @@ trait AccessMethodsTrait
         return array_values($this->items);
     }
 
+    /**
+     * Remove an item from the collection by key.
+     *
+     * @param string|array $keys
+     * @return $this
+     */
+    public function forget($keys)
+    {
+        foreach ((array)$keys as $key) {
+            $this->offsetUnset($key);
+        }
+
+        return $this;
+    }
 
     /**
      * @param string $key
@@ -111,13 +119,7 @@ trait AccessMethodsTrait
      */
     public function unset($key)
     {
-        if (!isset($this->items[$key]) && !array_key_exists($key, $this->items)) {
-            return null;
-        }
-        $removed = $this->items[$key];
-        unset($this->items[$key]);
-
-        return $removed;
+        $this->offsetUnset($key);
     }
 
     /**
@@ -145,6 +147,21 @@ trait AccessMethodsTrait
             array_unshift($this->items, $value);
         } else {
             $this->items = [$key => $value] + $this->items;
+        }
+
+        return $this;
+    }
+
+    /**
+     * Push one or more items onto the end of the collection.
+     *
+     * @param mixed $values [optional]
+     * @return $this
+     */
+    public function push(...$values)
+    {
+        foreach ($values as $value) {
+            $this->add($value);
         }
 
         return $this;

@@ -15,4 +15,6 @@ ByTIC collections component
 
 #### Inspiration
 https://github.com/illuminate/collections/blob/master/Collection.php
-https://github.com/Stillat/Collection
+https://github.com/doctrine/collections
+https://github.com/OveD-php/typed-collections
+https://github.com/jausions/php-typed-collections/
