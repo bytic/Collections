@@ -28,7 +28,7 @@ class FilterTraitTest extends AbstractTest
     {
         $data = new Collection(['first' => 'John', 'last' => 'Smith', 'email' => 'my@gmail.com']);
 
-        $dataSpliced = $data->splice(0,1);
+        $dataSpliced = $data->splice(0, 1);
         static::assertInstanceOf(Collection::class, $dataSpliced);
         self::assertSame(['first' => 'John'], $dataSpliced->all());
     }
