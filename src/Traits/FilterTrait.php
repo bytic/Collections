@@ -11,6 +11,18 @@ use Nip\Utility\Arr;
 trait FilterTrait
 {
     /**
+     * Get the first item from the collection passing the given truth test.
+     *
+     * @param  callable|null  $callback
+     * @param  mixed  $default
+     * @return mixed
+     */
+    public function first(callable $callback = null, $default = null)
+    {
+        return Arr::first($this->items, $callback, $default);
+    }
+
+    /**
      * Get the items with the specified keys.
      *
      * @param  mixed  $keys

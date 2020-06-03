@@ -24,6 +24,15 @@ trait TypedCollectionTrait
     }
 
     /**
+     * @inheritDoc
+     */
+    public function unshift($value, $key = null)
+    {
+        $this->validateItem($value);
+        parent::unshift($value, $key);
+    }
+
+    /**
      * @param mixed $type
      */
     public function setType($type): void

@@ -18,15 +18,32 @@ trait AbstractTypeTraitTest
     public function test_add_invalidValues($value)
     {
         $collection = $this->newCollection();
+        $exceptions = 0;
 
-        static::expectException(InvalidTypeException::class);
+        try {
+            $collection->add($value);
+        } catch (InvalidTypeException $exception) {$exceptions++;}
+        try {
+            $collection->set(1, $value);
+        } catch (InvalidTypeException $exception) {$exceptions++;}
+        try {
+            $collection[] = $value;
+        } catch (InvalidTypeException $exception) {$exceptions++;}
+        try {
+            $collection[1] = $value;
+        } catch (InvalidTypeException $exception) {$exceptions++;}
+        try {
+            $collection->unshift($value);
+        } catch (InvalidTypeException $exception) {$exceptions++;}
+        try {
+            $collection->unshift($value, 3);
+        } catch (InvalidTypeException $exception) {$exceptions++;}
+        try {
+            $collection->push($value);
+        } catch (InvalidTypeException $exception) {$exceptions++;}
 
-        $collection->add($value);
-        $collection->set(1, $value);
-        $collection[] = $value;
-        $collection[1] = $value;
-
-        self::assertCount(0, $collection);
+        self::assertSame(7, $exceptions);
+        self::assertSame(0, $collection->count());
     }
 
     /**
@@ -41,8 +58,10 @@ trait AbstractTypeTraitTest
         $collection->set(1, $value);
         $collection[] = $value;
         $collection[9] = $value;
+        $collection->unshift($value);
+        $collection->push($value);
 
-        self::assertCount(4, $collection);
+        self::assertCount(6, $collection);
     }
 
     /**
