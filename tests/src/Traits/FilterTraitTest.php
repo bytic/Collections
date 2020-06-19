@@ -11,6 +11,23 @@ use Nip\Collections\Tests\AbstractTest;
  */
 class FilterTraitTest extends AbstractTest
 {
+
+    public function testFilter()
+    {
+        $collection = new Collection([['id' => 1, 'name' => 'Hello'], ['id' => 2, 'name' => 'World']]);
+        static::assertEquals([1 => ['id' => 2, 'name' => 'World']], $collection->filter(function ($item) {
+            return $item['id'] == 2;
+        })->all());
+
+        $collection = new Collection(['', 'Hello', '', 'World']);
+        static::assertEquals(['Hello', 'World'], $collection->filter()->values());
+
+        $collection = new Collection(['id' => 1, 'first' => 'Hello', 'second' => 'World']);
+        static::assertEquals(['first' => 'Hello', 'second' => 'World'], $collection->filter(function ($item, $key) {
+            return $key != 'id';
+        })->all());
+    }
+
     public function test_only()
     {
         $data = new Collection(['first' => 'John', 'last' => 'Smith', 'email' => 'my@gmail.com']);

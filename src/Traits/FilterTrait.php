@@ -11,10 +11,25 @@ use Nip\Utility\Arr;
 trait FilterTrait
 {
     /**
+     * Run a filter over each of the items.
+     *
+     * @param callable|null $callback
+     * @return static
+     */
+    public function filter(callable $callback = null)
+    {
+        if ($callback) {
+            return new static(Arr::where($this->items, $callback));
+        }
+
+        return new static(array_filter($this->items));
+    }
+
+    /**
      * Get the first item from the collection passing the given truth test.
      *
-     * @param  callable|null  $callback
-     * @param  mixed  $default
+     * @param callable|null $callback
+     * @param mixed $default
      * @return mixed
      */
     public function first(callable $callback = null, $default = null)
