@@ -13,7 +13,7 @@ use Nip\Collections\Legacy\Traits\DeprecatedTraits;
  * Class Registry
  * @package Nip
  */
-class AbstractCollection implements ArrayAccess, Countable, IteratorAggregate, JsonSerializable
+abstract class AbstractCollection implements ArrayAccess, Countable, IteratorAggregate, JsonSerializable
 {
     use Traits\AccessMethodsTrait;
     use Traits\ArrayAccessTrait;

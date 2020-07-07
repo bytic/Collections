@@ -11,6 +11,20 @@ use Nip\Collections\AbstractCollection;
  */
 trait TransformMethodsTrait
 {
+    /**
+     * Run a map over each of the items.
+     *
+     * @param  callable  $callback
+     * @return static
+     */
+    public function map(callable $callback)
+    {
+        $keys = array_keys($this->items);
+
+        $items = array_map($callback, $this->items, $keys);
+
+        return new static(array_combine($keys, $items));
+    }
 
     /**
      * @return array
