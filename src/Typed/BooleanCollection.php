@@ -8,8 +8,8 @@ namespace Nip\Collections\Typed;
  */
 class BooleanCollection extends AbstractTypedCollection
 {
-    const TYPE = 'bool';
-    const CHECKER = 'is_bool';
+    public const TYPE = 'bool';
+    public const CHECKER = 'is_bool';
 
     protected $type = self::TYPE;
     protected $typeChecker = self::CHECKER;

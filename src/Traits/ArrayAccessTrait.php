@@ -8,7 +8,6 @@ namespace Nip\Collections\Traits;
  */
 trait ArrayAccessTrait
 {
-
     /**
      * Determine if the given configuration option exists.
      *

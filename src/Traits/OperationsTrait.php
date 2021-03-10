@@ -8,7 +8,6 @@ namespace Nip\Collections\Traits;
  */
 trait OperationsTrait
 {
-
     /**
      * Returns the number of parameters.
      *
@@ -50,7 +49,7 @@ trait OperationsTrait
         return !$this->isEmpty();
     }
 
-    public function clear() : void
+    public function clear(): void
     {
         $this->rewind();
         $this->items = [];
@@ -66,7 +65,7 @@ trait OperationsTrait
     {
         $results = [];
         foreach ($this->items as $key => $item) {
-            $resolvedKey = is_object($item) ? $item->{$keyBy}  : $item[$keyBy];
+            $resolvedKey = is_object($item) ? $item->{$keyBy} : $item[$keyBy];
             $results[$resolvedKey] = $item;
         }
         return new static($results);

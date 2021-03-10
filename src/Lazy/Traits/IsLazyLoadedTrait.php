@@ -15,7 +15,7 @@ trait IsLazyLoadedTrait
     /**
      * Is the lazy collection already initialized?
      */
-    public function isLoaded() : bool
+    public function isLoaded(): bool
     {
         return $this->loaded;
     }
@@ -23,7 +23,7 @@ trait IsLazyLoadedTrait
     /**
      * Initialize the collection
      */
-    protected function load() : void
+    protected function load(): void
     {
         if ($this->loaded) {
             return;
@@ -36,5 +36,5 @@ trait IsLazyLoadedTrait
     /**
      * Do the initialization logic
      */
-    abstract protected function doLoad() : void;
+    abstract protected function doLoad(): void;
 }

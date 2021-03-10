@@ -10,7 +10,6 @@ use Nip\Collections\Lazy\AbstractLazyCollection;
  */
 class LazyCollection extends AbstractLazyCollection
 {
-
     protected function doLoad(): void
     {
         $this[] = 1;
