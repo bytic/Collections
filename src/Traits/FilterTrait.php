@@ -2,6 +2,7 @@
 
 namespace Nip\Collections\Traits;
 
+use Nip\Collections\CollectionInterface;
 use Nip\Utility\Arr;
 
 /**
@@ -16,7 +17,7 @@ trait FilterTrait
      * @param callable|null $callback
      * @return static
      */
-    public function filter(callable $callback = null)
+    public function filter(callable $callback = null): CollectionInterface
     {
         if ($callback) {
             return new static(Arr::where($this->items, $callback));
@@ -35,6 +36,18 @@ trait FilterTrait
     public function first(callable $callback = null, $default = null)
     {
         return Arr::first($this->items, $callback, $default);
+    }
+
+    /**
+     * Get the last item from the collection.
+     *
+     * @param  callable|null  $callback
+     * @param  mixed  $default
+     * @return mixed
+     */
+    public function last(callable $callback = null, $default = null)
+    {
+        return Arr::last($this->items, $callback, $default);
     }
 
     /**

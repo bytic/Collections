@@ -2,10 +2,7 @@
 
 namespace Nip\Collections;
 
-use ArrayAccess;
 use ArrayIterator;
-use Countable;
-use IteratorAggregate;
 use JsonSerializable;
 use Nip\Collections\Legacy\Traits\DeprecatedTraits;
 
@@ -13,7 +10,7 @@ use Nip\Collections\Legacy\Traits\DeprecatedTraits;
  * Class Registry
  * @package Nip
  */
-abstract class AbstractCollection implements ArrayAccess, Countable, IteratorAggregate, JsonSerializable
+abstract class AbstractCollection implements CollectionInterface, JsonSerializable
 {
     use Traits\AccessMethodsTrait;
     use Traits\ArrayAccessTrait;

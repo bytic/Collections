@@ -2,6 +2,8 @@
 
 namespace Nip\Collections\Lazy\Traits;
 
+use Nip\Collections\CollectionInterface;
+
 /**
  * Trait CheckLoadedFunctionsTrait
  * @package Nip\Collections\Lazy\Traits
@@ -15,7 +17,7 @@ trait CheckLoadedFunctionsTrait
     public function offsetSet($key, $value)
     {
         $this->load();
-        return parent::offsetSet($key, $value);
+        parent::offsetSet($key, $value);
     }
 
     /**
@@ -42,13 +44,13 @@ trait CheckLoadedFunctionsTrait
     public function offsetUnset($key)
     {
         $this->load();
-        return parent::offsetUnset($key);
+        parent::offsetUnset($key);
     }
 
     /**
      * @inheritDoc
      */
-    public function filter(callable $callback = null)
+    public function filter(callable $callback = null): CollectionInterface
     {
         $this->load();
         return parent::filter($callback);

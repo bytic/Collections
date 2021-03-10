@@ -37,7 +37,7 @@ trait OperationsTrait
     /**
      * @return bool
      */
-    public function isEmpty()
+    public function isEmpty(): bool
     {
         return $this->count() < 1;
     }
@@ -45,20 +45,15 @@ trait OperationsTrait
     /**
      * @return bool
      */
-    public function isNotEmpty()
+    public function isNotEmpty(): bool
     {
         return !$this->isEmpty();
     }
 
-    /**
-     * @return $this
-     */
-    public function clear()
+    public function clear() : void
     {
         $this->rewind();
         $this->items = [];
-
-        return $this;
     }
 
     /**
