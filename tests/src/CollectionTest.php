@@ -68,7 +68,7 @@ class CollectionTest extends AbstractTest
         static::assertEquals('Han Solo', $this->collection->end());
     }
 
-    protected function setUp() : void
+    protected function setUp(): void
     {
         $this->collection = new Collection();
     }

@@ -22,25 +22,39 @@ trait AbstractTypeTraitTest
 
         try {
             $collection->add($value);
-        } catch (InvalidTypeException $exception) {$exceptions++;}
+        } catch (InvalidTypeException $exception) {
+            $exceptions++;
+        }
         try {
             $collection->set(1, $value);
-        } catch (InvalidTypeException $exception) {$exceptions++;}
+        } catch (InvalidTypeException $exception) {
+            $exceptions++;
+        }
         try {
             $collection[] = $value;
-        } catch (InvalidTypeException $exception) {$exceptions++;}
+        } catch (InvalidTypeException $exception) {
+            $exceptions++;
+        }
         try {
             $collection[1] = $value;
-        } catch (InvalidTypeException $exception) {$exceptions++;}
+        } catch (InvalidTypeException $exception) {
+            $exceptions++;
+        }
         try {
             $collection->unshift($value);
-        } catch (InvalidTypeException $exception) {$exceptions++;}
+        } catch (InvalidTypeException $exception) {
+            $exceptions++;
+        }
         try {
             $collection->unshift($value, 3);
-        } catch (InvalidTypeException $exception) {$exceptions++;}
+        } catch (InvalidTypeException $exception) {
+            $exceptions++;
+        }
         try {
             $collection->push($value);
-        } catch (InvalidTypeException $exception) {$exceptions++;}
+        } catch (InvalidTypeException $exception) {
+            $exceptions++;
+        }
 
         self::assertSame(7, $exceptions);
         self::assertSame(0, $collection->count());

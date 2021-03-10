@@ -12,7 +12,6 @@ use Nip\Utility\Str;
  */
 class TransformMethodsTraitTest extends AbstractTest
 {
-
     /**
      * @dataProvider collectionClassProvider
      */
@@ -31,7 +30,7 @@ class TransformMethodsTraitTest extends AbstractTest
     {
         $data = new Collection(['first' => 'john', 'last' => 'doe']);
         $data->transform(function ($item, $key) {
-            return $key.'-'.strrev($item);
+            return $key . '-' . strrev($item);
         });
         static::assertEquals(['first' => 'first-nhoj', 'last' => 'last-eod'], $data->all());
     }

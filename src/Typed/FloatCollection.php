@@ -8,8 +8,8 @@ namespace Nip\Collections\Typed;
  */
 class FloatCollection extends AbstractTypedCollection
 {
-    const TYPE = 'float';
-    const CHECKER = 'is_float';
+    public const TYPE = 'float';
+    public const CHECKER = 'is_float';
 
     protected $type = self::TYPE;
     protected $typeChecker = self::CHECKER;

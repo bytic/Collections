@@ -8,7 +8,7 @@ namespace Nip\Collections\Typed;
  */
 class ClassCollection extends AbstractTypedCollection
 {
-    const TYPE = 'class';
+    public const TYPE = 'class';
 
     protected $type = self::TYPE;
     protected $validClass = null;

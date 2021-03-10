@@ -8,8 +8,8 @@ namespace Nip\Collections\Typed;
  */
 class ObjectCollection extends AbstractTypedCollection
 {
-    const TYPE = 'object';
-    const CHECKER = 'is_object';
+    public const TYPE = 'object';
+    public const CHECKER = 'is_object';
 
     protected $type = self::TYPE;
     protected $typeChecker = self::CHECKER;

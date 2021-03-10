@@ -38,5 +38,4 @@ interface CollectionInterface extends ArrayInterface
      * @return T
      */
     public function last();
-
 }

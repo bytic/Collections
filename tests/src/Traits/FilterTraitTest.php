@@ -11,7 +11,6 @@ use Nip\Collections\Tests\AbstractTest;
  */
 class FilterTraitTest extends AbstractTest
 {
-
     public function testFilter()
     {
         $collection = new Collection([['id' => 1, 'name' => 'Hello'], ['id' => 2, 'name' => 'World']]);

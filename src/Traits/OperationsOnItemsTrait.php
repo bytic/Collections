@@ -10,7 +10,6 @@ use Exception;
  */
 trait OperationsOnItemsTrait
 {
-
     /**
      * @param $key
      * @param $value

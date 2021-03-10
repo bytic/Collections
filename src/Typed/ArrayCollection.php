@@ -8,8 +8,8 @@ namespace Nip\Collections\Typed;
  */
 class ArrayCollection extends AbstractTypedCollection
 {
-    const TYPE = 'array';
-    const CHECKER = 'is_array';
+    public const TYPE = 'array';
+    public const CHECKER = 'is_array';
 
     protected $type = self::TYPE;
     protected $typeChecker = self::CHECKER;

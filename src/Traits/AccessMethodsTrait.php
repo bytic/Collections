@@ -8,7 +8,6 @@ namespace Nip\Collections\Traits;
  */
 trait AccessMethodsTrait
 {
-
     /**
      * @param array $items
      */

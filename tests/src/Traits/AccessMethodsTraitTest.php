@@ -22,7 +22,7 @@ class AccessMethodsTraitTest extends AbstractTest
         $collection->unshift(2);
         self::assertSame(2, $collection->first());
 
-        $collection->unshift(3,99);
+        $collection->unshift(3, 99);
         self::assertSame(3, $collection->first());
         self::assertSame(99, Arr::first($collection->keys()));
     }
