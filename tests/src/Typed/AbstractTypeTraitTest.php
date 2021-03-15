@@ -4,6 +4,7 @@ namespace Nip\Collections\Tests\Typed;
 
 use Nip\Collections\Exceptions\InvalidTypeException;
 use Nip\Collections\Typed\AbstractTypedCollection;
+use function PHPUnit\Framework\assertEquals;
 
 /**
  * Trait AbstractTypeTraitTest

@@ -12,6 +12,8 @@ use Nip\Utility\Arr;
  */
 trait TransformMethodsTrait
 {
+    protected $serializable = ['items'];
+
     /**
      * Get the values of a given key.
      *
@@ -89,7 +91,20 @@ trait TransformMethodsTrait
      */
     public function serialize(): string
     {
-        return serialize($this->items);
+        $properties = $this->__sleep();
+        $data = [];
+        foreach ($properties as $property) {
+            $data[$property] = $this->{$property};
+        }
+        return serialize($data);
+    }
+
+    /**
+     * @return array
+     */
+    public function __sleep()
+    {
+        return $this->serializable;
     }
 
     /**
@@ -104,9 +119,13 @@ trait TransformMethodsTrait
     public function unserialize($serialized): void
     {
         /** @var array<array-key, T> $data */
-        $data = unserialize($serialized, ['allowed_classes' => false]);
-
-        $this->items = $data;
+        $data = unserialize($serialized, ['allowed_classes' => $this->unserializeAllowedClasses()]);
+        if (!is_array($data)) {
+            return;
+        }
+        foreach ($data as $property => $value) {
+            $this->{$property} = $value;
+        }
     }
 
     /**
@@ -125,5 +144,10 @@ trait TransformMethodsTrait
                 return $value;
             }
         }, $this->items);
+    }
+
+    protected function unserializeAllowedClasses()
+    {
+        return false;
     }
 }

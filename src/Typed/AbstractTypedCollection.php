@@ -11,4 +11,6 @@ use Nip\Collections\AbstractCollection;
 class AbstractTypedCollection extends AbstractCollection
 {
     use TypedCollectionTrait;
+
+    protected $serializable = ['items', 'type'];
 }

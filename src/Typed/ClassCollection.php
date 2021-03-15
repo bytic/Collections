@@ -8,6 +8,8 @@ namespace Nip\Collections\Typed;
  */
 class ClassCollection extends AbstractTypedCollection
 {
+    protected $serializable = ['items', 'type', 'validClass'];
+
     public const TYPE = 'class';
 
     protected $type = self::TYPE;
@@ -25,6 +27,10 @@ class ClassCollection extends AbstractTypedCollection
         parent::__construct($items);
     }
 
+    protected function unserializeAllowedClasses()
+    {
+        return [$this->validClass];
+    }
 
     /**
      * @param null $validClass

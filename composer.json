@@ -50,8 +50,5 @@
     ],
     "stan": "phpstan analyse",
     "psalm": "psalm --output-format=compact --find-dead-code --find-unused-psalm-suppress --long-progress "
-  },
-  "config": {
-    "disable-tls": false
   }
 }
