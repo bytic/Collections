@@ -4,6 +4,7 @@ namespace Nip\Collections\Traits;
 
 use JsonSerializable;
 use Nip\Collections\AbstractCollection;
+use Nip\Collections\ArrayInterface;
 use Nip\Utility\Arr;
 
 /**
@@ -42,6 +43,58 @@ trait TransformMethodsTrait
     }
 
     /**
+     * Run a dictionary map over the items.
+     *
+     * The callback should return an associative array with a single key/value pair.
+     *
+     * @param callable $callback
+     * @return static
+     */
+    public function mapToDictionary(callable $callback)
+    {
+        $dictionary = [];
+
+        foreach ($this->items as $key => $item) {
+            $pair = $callback($item, $key);
+
+            $key = key($pair);
+
+            $value = reset($pair);
+
+            if (!isset($dictionary[$key])) {
+                $dictionary[$key] = [];
+            }
+
+            $dictionary[$key][] = $value;
+        }
+
+        return new static($dictionary);
+    }
+
+    /**
+     * Run an associative map over each of the items.
+     *
+     * The callback should return an associative array with a single key/value pair.
+     *
+     * @param  callable  $callback
+     * @return static
+     */
+    public function mapWithKeys(callable $callback)
+    {
+        $result = [];
+
+        foreach ($this->items as $key => $value) {
+            $assoc = $callback($value, $key);
+
+            foreach ($assoc as $mapKey => $mapValue) {
+                $result[$mapKey] = $mapValue;
+            }
+        }
+
+        return new static($result);
+    }
+
+    /**
      * Concatenate values of a given key as a string.
      *
      * @param string $value
@@ -73,12 +126,30 @@ trait TransformMethodsTrait
     }
 
     /**
+     * Reduce the collection to a single value.
+     *
+     * @param  callable  $callback
+     * @param  mixed $initial
+     * @return mixed
+     */
+    public function reduce(callable $callback, $initial = null)
+    {
+        $result = $initial;
+
+        foreach ($this as $key => $value) {
+            $result = $callback($result, $value, $key);
+        }
+
+        return $result;
+    }
+
+    /**
      * @return array
      */
     public function toArray(): array
     {
         return array_map(function ($value) {
-            return $value instanceof AbstractCollection ? $value->toArray() : $value;
+            return $value instanceof ArrayInterface ? $value->toArray() : $value;
         }, $this->items);
     }
 

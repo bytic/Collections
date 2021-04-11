@@ -10,6 +10,24 @@ use Exception;
  */
 trait OperationsOnItemsTrait
 {
+
+    /**
+     * Execute a callback over each item.
+     *
+     * @param  callable  $callback
+     * @return $this
+     */
+    public function each(callable $callback)
+    {
+        foreach ($this as $key => $item) {
+            if ($callback($item, $key) === false) {
+                break;
+            }
+        }
+
+        return $this;
+    }
+
     /**
      * @param $key
      * @param $value
