@@ -2,6 +2,8 @@
 
 namespace Nip\Collections\Traits;
 
+use Nip\Collections\AbstractCollection;
+
 /**
  * Class OperationsTrait
  * @package Nip\Collections\Traits
@@ -58,7 +60,7 @@ trait OperationsTrait
     /**
      * Key an associative array by a field or using a callback.
      *
-     * @param  callable|string $keyBy
+     * @param callable|string $keyBy
      * @return static
      */
     public function keyBy($keyBy)
@@ -69,6 +71,43 @@ trait OperationsTrait
             $results[$resolvedKey] = $item;
         }
         return new static($results);
+    }
+
+    /**
+     * Group an associative array by a field or using a callback.
+     *
+     * @param array|callable|string $groupBy
+     * @param bool $preserveKeys
+     * @return static
+     */
+    public function groupBy($groupBy, $preserveKeys = false): AbstractCollection
+    {
+        $results = [];
+
+        $groupBy = $this->valueRetriever($groupBy);
+
+        foreach ($this->items as $key => $value) {
+            $groupKeys = $groupBy($value, $key);
+
+
+            if (!is_array($groupKeys)) {
+                $groupKeys = [$groupKeys];
+            }
+
+            foreach ($groupKeys as $groupKey) {
+                $groupKey = is_bool($groupKey) ? (int)$groupKey : $groupKey;
+
+                if (!array_key_exists($groupKey, $results)) {
+                    $results[$groupKey] = new static;
+                }
+
+                $results[$groupKey]->offsetSet($preserveKeys ? $key : null, $value);
+            }
+        }
+
+        $result = new static($results);
+
+        return $result;
     }
 
     /**

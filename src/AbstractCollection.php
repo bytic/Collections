@@ -14,6 +14,7 @@ abstract class AbstractCollection implements CollectionInterface, JsonSerializab
 {
     use Traits\AccessMethodsTrait;
     use Traits\ArrayAccessTrait;
+    use Traits\EnumeratesValues;
     use Traits\FilterTrait;
     use Traits\OperationsOnItemsTrait;
     use Traits\OperationsTrait;

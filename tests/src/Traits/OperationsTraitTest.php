@@ -50,4 +50,28 @@ class OperationsTraitTest extends AbstractTest
         static::assertEquals(['first', 'second'], $collection->keys());
         static::assertEquals(['John', 'Mike'], $newCollection->keys());
     }
+
+
+    public function test_groupByForArrayCollection()
+    {
+        $collection = new Collection();
+        $collection[1] = ['name' => 'John', 'type' => 'user'];
+        $collection[2] = ['name' => 'Mike', 'type' => 'user'];
+        $collection[3] = ['name' => 'Mike', 'type' => 'admin'];
+
+        $newCollection = $collection->groupBy('type');
+
+        static::assertEquals(['user', 'admin'], $newCollection->keys());
+        static::assertEquals(
+            [
+                ['name' => 'John', 'type' => 'user'],
+                ['name' => 'Mike', 'type' => 'user']
+            ],
+            $newCollection->get('user')->toArray()
+        );
+        static::assertEquals(
+            [['name' => 'Mike', 'type' => 'admin']],
+            $newCollection->get('admin')->toArray()
+        );
+    }
 }
