@@ -32,7 +32,7 @@ trait CheckLoadedFunctionsTrait
     /**
      * @inheritDoc
      */
-    public function offsetExists($key)
+    public function offsetExists($key): bool
     {
         $this->load();
         return parent::offsetExists($key);

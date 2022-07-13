@@ -28,27 +28,21 @@
     }
   },
   "require": {
-    "php": "^7.2|^8.0",
+    "php": "^7.4|^8.0",
     "ext-json": "*",
     "bytic/utility": "^1.0"
   },
   "require-dev": {
-    "bytic/phpqatools": "^1.0",
-    "mockery/mockery": "^1.0"
+    "bytic/phpqatools": "^1.0.14"
   },
-  "scripts": {
-    "tests": [
-      "@analyse",
-      "@test"
-    ],
-    "test": [
-      "phpunit"
-    ],
-    "analyse": [
-      "@stan",
-      "@psalm"
-    ],
-    "stan": "phpstan analyse",
-    "psalm": "psalm --output-format=compact --find-dead-code --find-unused-psalm-suppress --long-progress "
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "config": {
+    "allow-plugins": {
+      "phpstan/extension-installer": true,
+      "ergebnis/composer-normalize": true,
+      "dealerdirect/phpcodesniffer-composer-installer": true,
+      "bytic/phpqatools": true
+    }
   }
 }

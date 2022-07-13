@@ -9,20 +9,28 @@ namespace Nip\Collections\Traits;
 trait ArrayAccessTrait
 {
     /**
-     * Determine if the given configuration option exists.
+     * Returns `true` if the given offset exists in this array.
      *
-     * @param  string $key
-     * @return bool
+     * @link http://php.net/manual/en/arrayaccess.offsetexists.php ArrayAccess::offsetExists()
+     *
+     * @param array-key $offset The offset to check.
      */
-    public function offsetExists($key)
+    public function offsetExists($key): bool
     {
-        return isset($this->items[$key]) || array_key_exists($key, $this->items);
+        if (isset($this->items[$key])) {
+            return true;
+        }
+
+        if (is_int($key) || is_string($key)) {
+            return array_key_exists($key, $this->items);
+        }
+        return false;
     }
 
     /**
      * Get a configuration option.
      *
-     * @param  string $key
+     * @param string $key
      * @return mixed
      */
     public function offsetGet($key)
@@ -31,8 +39,8 @@ trait ArrayAccessTrait
     }
 
     /**
-     * @param  string $key
-     * @param  mixed $value
+     * @param string $key
+     * @param mixed $value
      * @return void
      */
     public function offsetSet($key, $value)
