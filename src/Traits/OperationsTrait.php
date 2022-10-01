@@ -15,7 +15,7 @@ trait OperationsTrait
      *
      * @return int The number of parameters
      */
-    public function count()
+    public function count(): int
     {
         return count($this->items);
     }
@@ -25,7 +25,7 @@ trait OperationsTrait
      *
      * @return int
      */
-    public function size()
+    public function size(): int
     {
         $result = 0;
         foreach ($this as $value) {

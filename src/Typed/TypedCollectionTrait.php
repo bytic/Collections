@@ -17,7 +17,7 @@ trait TypedCollectionTrait
     /**
      * @inheritDoc
      */
-    public function offsetSet($offset, $value)
+    public function offsetSet($offset, $value): void
     {
         $this->validateItem($value);
         parent::offsetSet($offset, $value);

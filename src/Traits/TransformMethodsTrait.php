@@ -76,7 +76,7 @@ trait TransformMethodsTrait
      *
      * The callback should return an associative array with a single key/value pair.
      *
-     * @param  callable  $callback
+     * @param callable $callback
      * @return static
      */
     public function mapWithKeys(callable $callback)
@@ -128,8 +128,8 @@ trait TransformMethodsTrait
     /**
      * Reduce the collection to a single value.
      *
-     * @param  callable  $callback
-     * @param  mixed $initial
+     * @param callable $callback
+     * @param mixed $initial
      * @return mixed
      */
     public function reduce(callable $callback, $initial = null)
@@ -173,9 +173,33 @@ trait TransformMethodsTrait
     /**
      * @return array
      */
+    public function __serialize(): array
+    {
+        $properties = $this->__sleep();
+        $data = [];
+        foreach ($properties as $property) {
+            $data[$property] = $this->{$property};
+        }
+        return $data;
+    }
+
+    /**
+     * @return array
+     */
     public function __sleep()
     {
         return $this->serializable;
+    }
+
+    /**
+     * @param $data
+     * @return void
+     */
+    public function __unserialize($data): void
+    {
+        foreach ($data as $property => $value) {
+            $this->{$property} = $value;
+        }
     }
 
     /**
@@ -206,7 +230,7 @@ trait TransformMethodsTrait
      * which is a value of any type other than a resource.
      * @since 5.4.0
      */
-    public function jsonSerialize()
+    public function jsonSerialize(): mixed
     {
         return array_map(function ($value) {
             if ($value instanceof JsonSerializable) {

@@ -14,7 +14,7 @@ trait CheckLoadedFunctionsTrait
     /**
      * @inheritDoc
      */
-    public function offsetSet($key, $value)
+    public function offsetSet($key, $value): void
     {
         $this->load();
         parent::offsetSet($key, $value);
@@ -23,7 +23,7 @@ trait CheckLoadedFunctionsTrait
     /**
      * @inheritDoc
      */
-    public function offsetGet($key)
+    public function offsetGet($key) : mixed
     {
         $this->load();
         return parent::offsetGet($key);
@@ -41,7 +41,7 @@ trait CheckLoadedFunctionsTrait
     /**
      * @inheritDoc
      */
-    public function offsetUnset($key)
+    public function offsetUnset($key): void
     {
         $this->load();
         parent::offsetUnset($key);
@@ -60,7 +60,7 @@ trait CheckLoadedFunctionsTrait
     /**
      * @inheritDoc
      */
-    public function count()
+    public function count(): int
     {
         $this->load();
         return parent::count();

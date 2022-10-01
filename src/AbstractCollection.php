@@ -5,6 +5,7 @@ namespace Nip\Collections;
 use ArrayIterator;
 use JsonSerializable;
 use Nip\Collections\Legacy\Traits\DeprecatedTraits;
+use Traversable;
 
 /**
  * Class Registry
@@ -59,7 +60,7 @@ abstract class AbstractCollection implements CollectionInterface, JsonSerializab
     /**
      * @return ArrayIterator
      */
-    public function getIterator()
+    public function getIterator() : Traversable
     {
         return new ArrayIterator($this->items);
     }

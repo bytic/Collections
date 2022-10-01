@@ -33,7 +33,7 @@ trait ArrayAccessTrait
      * @param string $key
      * @return mixed
      */
-    public function offsetGet($key)
+    public function offsetGet($key): mixed
     {
         return $this->items[$key];
     }
@@ -43,7 +43,7 @@ trait ArrayAccessTrait
      * @param mixed $value
      * @return void
      */
-    public function offsetSet($key, $value)
+    public function offsetSet($key, $value): void
     {
         if (is_null($key)) {
             $this->items[] = $value;
@@ -57,7 +57,7 @@ trait ArrayAccessTrait
      *
      * @inheritdoc
      */
-    public function offsetUnset($key)
+    public function offsetUnset($key): void
     {
         unset($this->items[$key]);
     }
