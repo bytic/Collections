@@ -30,7 +30,6 @@ abstract class AbstractArray  implements ArrayInterface
      */
     protected $data = [];
 
-    protected $index = 0;
 
     /**
      * Constructs a new array object.

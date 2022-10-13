@@ -8,6 +8,8 @@ namespace Nip\Collections\Traits;
  */
 trait SortingTrait
 {
+    protected int $index = 0;
+
     /**
      * @return mixed
      */

@@ -28,8 +28,6 @@ abstract class AbstractCollection implements CollectionInterface, JsonSerializab
      */
     protected $items = [];
 
-    protected $index = 0;
-
     /**
      * Collection constructor.
      * @param array $items
