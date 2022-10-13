@@ -10,26 +10,31 @@ trait IteratorTrait
     protected int $index = 0;
 
     /**
-     * @return mixed
+     * Resets the collection.
      */
-    public function rewind()
+    public function rewind(): void
     {
         $this->index = 0;
-
-        return reset($this->items);
+        reset($this->items);
     }
 
     /**
-     * @return mixed
+     * Gets current collection item.
+     *
+     * @return mixed Value
      */
-    public function current()
+    #[\ReturnTypeWillChange]
+    public function current(): mixed
     {
         return current($this->items);
     }
 
     /**
-     * @return mixed
+     * Gets the next collection value.
+     *
+     * @return mixed Value
      */
+    #[\ReturnTypeWillChange]
     public function next()
     {
         $this->index++;
@@ -51,6 +56,7 @@ trait IteratorTrait
      * @link https://php.net/manual/en/iterator.key.php
      * @return int|TKey|string|null
      */
+    #[\ReturnTypeWillChange]
     public function key()
     {
         return key($this->items);
