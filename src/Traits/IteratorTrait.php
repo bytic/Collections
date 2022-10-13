@@ -12,10 +12,11 @@ trait IteratorTrait
     /**
      * Resets the collection.
      */
-    public function rewind(): void
+    #[\ReturnTypeWillChange]
+    public function rewind()
     {
         $this->index = 0;
-        reset($this->items);
+        return reset($this->items);
     }
 
     /**
