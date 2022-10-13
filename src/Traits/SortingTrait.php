@@ -8,33 +8,10 @@ namespace Nip\Collections\Traits;
  */
 trait SortingTrait
 {
+    use IteratorTrait;
+
     protected int $index = 0;
 
-    /**
-     * @return mixed
-     */
-    public function end()
-    {
-        $this->index = count($this->items);
-        return end($this->items);
-    }
-
-    /**
-     * @return mixed
-     */
-    public function current()
-    {
-        return current($this->items);
-    }
-
-    /**
-     * @return mixed
-     */
-    public function next()
-    {
-        $this->index++;
-        return next($this->items);
-    }
     /**
      * @return mixed
      */
@@ -86,4 +63,5 @@ trait SortingTrait
         $this->rewind();
         return $this;
     }
+
 }
