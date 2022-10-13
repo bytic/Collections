@@ -10,18 +10,6 @@ trait SortingTrait
 {
     use IteratorTrait;
 
-    protected int $index = 0;
-
-    /**
-     * @return mixed
-     */
-    public function rewind()
-    {
-        $this->index = 0;
-
-        return reset($this->items);
-    }
-
     /**
      * @return $this
      */
@@ -63,5 +51,4 @@ trait SortingTrait
         $this->rewind();
         return $this;
     }
-
 }

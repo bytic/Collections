@@ -7,6 +7,18 @@ namespace Nip\Collections\Traits;
  */
 trait IteratorTrait
 {
+    protected int $index = 0;
+
+    /**
+     * @return mixed
+     */
+    public function rewind()
+    {
+        $this->index = 0;
+
+        return reset($this->items);
+    }
+
     /**
      * @return mixed
      */
