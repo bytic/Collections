@@ -3,6 +3,7 @@
 namespace Nip\Collections\Traits;
 
 use JsonSerializable;
+use Nip\Collections\AbstractArray;
 use Nip\Collections\AbstractCollection;
 use Nip\Collections\ArrayInterface;
 use Nip\Utility\Arr;
@@ -123,6 +124,15 @@ trait TransformMethodsTrait
         $this->items = $this->map($callback)->all();
 
         return $this;
+    }
+
+    /**
+     * @param $preserve_keys
+     * @return TransformMethodsTrait|AbstractArray|AbstractCollection
+     */
+    public function reverse($preserve_keys = false): self
+    {
+        return new static(array_reverse($this->items, $preserve_keys));
     }
 
     /**
